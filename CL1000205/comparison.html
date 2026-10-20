@@ -1,0 +1,421 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Orin anchor-search comparison</title><style>body{font:16px system-ui;max-width:1100px;margin:40px auto;padding:0 24px;line-height:1.5}table{border-collapse:collapse;width:100%;margin:20px 0}th,td{padding:9px;border-bottom:1px solid #dce2e8;text-align:right}td:first-child,th:first-child{text-align:left}th{background:#eef3f8}a{color:#075ea0}</style><h1>Orin anchor-search comparison</h1><p>197 paired cycles. Anchor/IOU call counts differ in 0 cycles. Report-internal NVTX counts agree with imported rows; the target timestamp window is verified separately.</p><p><strong>Modest per-call improvement: anchor −4.66%, IOU -2.60% (filtered). Average full-node duration is essentially unchanged (−0.036%).</strong></p><p>anchor = findAnchorPoint; iou = computeLaneIOUDataImpl; node = roadGraphFusionNode.PROCESS. Each version has 114,178 anchor/IOU calls over the same 197 cycles, with a peak of 3,413 calls/cycle.</p><h2>Per-call duration</h2><p><strong>Documented exclusion:</strong> One candidate IOU call, 650.528 µs (0.650528 ms), is excluded from per-call IOU statistics at the user’s request. Source timestamp 1514596793383 µs, occurrence 0, zero-based IOU call index 842. Baseline retains 114,178 IOU calls; candidate statistics retain 114,177 of 114,178 calls. Measured call counts, per-cycle aggregates, wrapper/node durations, and all 197 plotted cycles are unchanged. The original unfiltered statistics and report are preserved. <a href="exclusions.json">Exclusion record</a> · <a href="comparison.unfiltered.html">Original report</a> · <a href="comparison.unfiltered.json">Original statistics</a>.</p><table><tr><th>Range</th><th>Statistic</th><th>Baseline (µs)</th><th>Optimized (µs)</th><th>Change</th></tr><tr><td>anchor</td><td>mean</td><td>8.547</td><td>8.148</td><td>-4.66%</td></tr><tr><td>anchor</td><td>median</td><td>8.896</td><td>8.448</td><td>-5.04%</td></tr><tr><td>anchor</td><td>p95</td><td>19.200</td><td>18.656</td><td>-2.83%</td></tr><tr><td>anchor</td><td>max</td><td>427.552</td><td>369.856</td><td>-13.49%</td></tr><tr><td>iou</td><td>mean</td><td>16.090</td><td>15.671</td><td>-2.60%</td></tr><tr><td>iou</td><td>median</td><td>16.288</td><td>15.840</td><td>-2.75%</td></tr><tr><td>iou</td><td>p95</td><td>27.904</td><td>26.912</td><td>-3.56%</td></tr><tr><td>iou</td><td>max</td><td>436.768</td><td>378.624</td><td>-13.31%</td></tr></table><h2>RGF node PROCESS time series</h2><div style="width:100%"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" viewBox="0 0 1300 580" role="img" aria-labelledby="plot-title">
+<title id="plot-title">RGF node PROCESS latency: baseline and candidate over aligned recording time</title>
+<rect width="100%" height="100%" fill="white"/><g font-family="Arial,sans-serif" fill="#172033">
+<text x="78" y="30" font-size="23" font-weight="bold">RGF node PROCESS — baseline vs candidate</text>
+<text x="78" y="56" font-size="14" fill="#536174">197 matched cycles · CPU-side NVTX elapsed latency · whole-cycle values unfiltered</text>
+<line x1="78" x2="1270" y1="490.0" y2="490.0" stroke="#e2e7ef"/><text x="66" y="495.0" text-anchor="end" font-size="13">0</text>
+<line x1="78" x2="1270" y1="410.0" y2="410.0" stroke="#e2e7ef"/><text x="66" y="415.0" text-anchor="end" font-size="13">50</text>
+<line x1="78" x2="1270" y1="330.0" y2="330.0" stroke="#e2e7ef"/><text x="66" y="335.0" text-anchor="end" font-size="13">100</text>
+<line x1="78" x2="1270" y1="250.0" y2="250.0" stroke="#e2e7ef"/><text x="66" y="255.0" text-anchor="end" font-size="13">150</text>
+<line x1="78" x2="1270" y1="170.0" y2="170.0" stroke="#e2e7ef"/><text x="66" y="175.0" text-anchor="end" font-size="13">200</text>
+<line x1="78" x2="1270" y1="90.0" y2="90.0" stroke="#e2e7ef"/><text x="66" y="95.0" text-anchor="end" font-size="13">250</text>
+<line x1="78.0" x2="78.0" y1="90" y2="490" stroke="#eef1f5"/><text x="78.0" y="515" text-anchor="middle" font-size="13">0</text>
+<line x1="316.4" x2="316.4" y1="90" y2="490" stroke="#eef1f5"/><text x="316.4" y="515" text-anchor="middle" font-size="13">5</text>
+<line x1="554.8" x2="554.8" y1="90" y2="490" stroke="#eef1f5"/><text x="554.8" y="515" text-anchor="middle" font-size="13">10</text>
+<line x1="793.1999999999999" x2="793.1999999999999" y1="90" y2="490" stroke="#eef1f5"/><text x="793.1999999999999" y="515" text-anchor="middle" font-size="13">15</text>
+<line x1="1031.6" x2="1031.6" y1="90" y2="490" stroke="#eef1f5"/><text x="1031.6" y="515" text-anchor="middle" font-size="13">20</text>
+<line x1="1270.0" x2="1270.0" y1="90" y2="490" stroke="#eef1f5"/><text x="1270.0" y="515" text-anchor="middle" font-size="13">25</text>
+<polyline points="78.00,425.18 84.36,420.97 89.13,422.26 93.89,421.41 100.25,419.28 105.02,418.65 111.38,424.13 117.73,414.24 122.50,415.97 127.27,417.43 133.63,409.79 139.98,398.45 144.75,404.17 151.11,398.07 155.88,411.72 162.23,399.93 168.59,404.45 173.36,401.62 178.13,401.38 184.49,408.06 189.25,382.64 195.61,382.24 200.38,376.11 206.74,383.62 211.50,381.95 217.86,385.18 222.63,377.87 228.99,367.84 235.34,381.20 240.11,376.20 246.47,367.17 251.24,370.42 257.59,363.83 263.95,369.17 268.72,368.16 275.08,371.64 281.43,365.99 286.20,383.39 286.20,442.54 294.15,382.77 298.92,381.69 305.27,381.28 311.63,390.46 317.99,375.45 322.76,403.14 329.11,390.00 335.47,391.79 341.83,393.93 346.60,392.78 354.54,389.40 360.90,351.52 360.90,452.11 365.67,385.64 372.03,389.08 378.38,387.98 384.74,402.14 391.10,386.13 395.87,389.87 402.22,383.29 408.58,382.08 414.94,389.41 421.30,386.83 427.65,347.40 432.42,391.63 432.42,455.80 438.78,388.10 445.14,395.18 451.49,406.13 456.26,404.72 462.62,406.48 468.98,416.84 475.33,406.30 480.10,409.33 486.46,397.83 491.23,400.90 497.58,389.71 503.94,373.53 510.30,355.79 515.07,343.45 521.42,353.15 527.78,323.26 527.78,434.10 534.14,307.28 540.50,342.32 546.85,348.22 551.62,361.84 557.98,292.73 564.34,301.80 570.69,307.86 575.46,318.46 583.41,246.71 589.77,291.42 589.77,422.47 596.12,311.90 602.48,316.75 608.84,271.91 613.60,282.99 621.55,332.34 627.91,303.76 634.27,316.09 639.03,414.58 639.03,358.52 646.98,340.04 651.75,386.51 661.28,362.99 666.05,360.06 666.05,444.65 674.00,340.23 678.77,312.35 686.71,306.66 691.48,336.99 699.43,292.20 704.20,299.47 712.14,310.46 718.50,269.26 718.50,439.45 724.86,339.96 731.21,365.90 739.16,352.32 745.52,352.95 745.52,438.93 753.47,359.66 758.23,367.33 766.18,297.51 770.95,312.92 770.95,434.90 780.48,309.50 785.25,319.06 794.79,273.28 799.56,287.14 805.91,312.09 812.27,273.99 818.63,263.94 823.40,254.68 823.40,415.18 831.34,289.84 837.70,273.34 844.06,252.63 850.42,259.18 856.77,242.49 861.54,273.44 869.49,243.51 875.84,146.91 875.84,420.05 882.20,248.19 888.56,302.60 894.92,210.89 901.27,192.99 901.27,419.21 913.99,217.41 913.99,430.67 920.35,204.61 926.70,196.55 933.06,243.06 939.42,300.56 939.42,434.49 947.36,312.01 953.72,348.50 961.67,316.01 969.62,348.05 969.62,450.93 975.97,351.89 982.33,311.01 990.28,333.89 995.04,330.62 1004.58,335.60 1009.35,338.86 1009.35,438.88 1017.30,350.07 1022.06,382.68 1028.42,350.79 1034.78,359.45 1042.72,360.69 1047.49,358.69 1053.85,350.39 1060.21,349.25 1060.21,442.90 1066.56,330.19 1071.33,326.05 1077.69,261.76 1084.05,279.44 1090.40,241.95 1095.17,290.23 1101.53,260.66 1107.89,276.85 1114.24,303.31 1119.01,286.17 1126.96,311.39 1131.73,309.68 1138.08,412.47 1144.44,306.94 1144.44,432.61 1150.80,325.90 1157.16,373.20 1163.51,356.29 1169.87,359.18 1169.87,440.05" fill="none" stroke="#2369bd" stroke-width="1.8" opacity="0.9"/>
+<circle cx="78.00" cy="425.18" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 40.511 ms; recording +0.000000 s; timestamp 1514587360067 µs</title></circle>
+<circle cx="84.36" cy="420.97" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 43.144 ms; recording +0.133329 s; timestamp 1514587493396 µs</title></circle>
+<circle cx="89.13" cy="422.26" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 42.338 ms; recording +0.233331 s; timestamp 1514587593398 µs</title></circle>
+<circle cx="93.89" cy="421.41" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 42.868 ms; recording +0.333327 s; timestamp 1514587693394 µs</title></circle>
+<circle cx="100.25" cy="419.28" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 44.201 ms; recording +0.466656 s; timestamp 1514587826723 µs</title></circle>
+<circle cx="105.02" cy="418.65" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 44.593 ms; recording +0.566651 s; timestamp 1514587926718 µs</title></circle>
+<circle cx="111.38" cy="424.13" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 41.166 ms; recording +0.699980 s; timestamp 1514588060047 µs</title></circle>
+<circle cx="117.73" cy="414.24" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 47.347 ms; recording +0.833313 s; timestamp 1514588193380 µs</title></circle>
+<circle cx="122.50" cy="415.97" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 46.268 ms; recording +0.933338 s; timestamp 1514588293405 µs</title></circle>
+<circle cx="127.27" cy="417.43" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 45.356 ms; recording +1.033335 s; timestamp 1514588393402 µs</title></circle>
+<circle cx="133.63" cy="409.79" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 50.130 ms; recording +1.166664 s; timestamp 1514588526731 µs</title></circle>
+<circle cx="139.98" cy="398.45" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 57.216 ms; recording +1.299995 s; timestamp 1514588660062 µs</title></circle>
+<circle cx="144.75" cy="404.17" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 53.642 ms; recording +1.399994 s; timestamp 1514588760061 µs</title></circle>
+<circle cx="151.11" cy="398.07" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 57.458 ms; recording +1.533322 s; timestamp 1514588893389 µs</title></circle>
+<circle cx="155.88" cy="411.72" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 48.926 ms; recording +1.633318 s; timestamp 1514588993385 µs</title></circle>
+<circle cx="162.23" cy="399.93" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 56.297 ms; recording +1.766651 s; timestamp 1514589126718 µs</title></circle>
+<circle cx="168.59" cy="404.45" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 53.469 ms; recording +1.899981 s; timestamp 1514589260048 µs</title></circle>
+<circle cx="173.36" cy="401.62" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 55.237 ms; recording +2.000003 s; timestamp 1514589360070 µs</title></circle>
+<circle cx="178.13" cy="401.38" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 55.387 ms; recording +2.100003 s; timestamp 1514589460070 µs</title></circle>
+<circle cx="184.49" cy="408.06" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 51.215 ms; recording +2.233330 s; timestamp 1514589593397 µs</title></circle>
+<circle cx="189.25" cy="382.64" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 67.101 ms; recording +2.333330 s; timestamp 1514589693397 µs</title></circle>
+<circle cx="195.61" cy="382.24" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 67.351 ms; recording +2.466658 s; timestamp 1514589826725 µs</title></circle>
+<circle cx="200.38" cy="376.11" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 71.184 ms; recording +2.566654 s; timestamp 1514589926721 µs</title></circle>
+<circle cx="206.74" cy="383.62" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 66.487 ms; recording +2.699987 s; timestamp 1514590060054 µs</title></circle>
+<circle cx="211.50" cy="381.95" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 67.532 ms; recording +2.799984 s; timestamp 1514590160051 µs</title></circle>
+<circle cx="217.86" cy="385.18" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 65.511 ms; recording +2.933313 s; timestamp 1514590293380 µs</title></circle>
+<circle cx="222.63" cy="377.87" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 70.080 ms; recording +3.033311 s; timestamp 1514590393378 µs</title></circle>
+<circle cx="228.99" cy="367.84" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 76.352 ms; recording +3.166666 s; timestamp 1514590526733 µs</title></circle>
+<circle cx="235.34" cy="381.20" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 67.998 ms; recording +3.299997 s; timestamp 1514590660064 µs</title></circle>
+<circle cx="240.11" cy="376.20" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 71.123 ms; recording +3.399994 s; timestamp 1514590760061 µs</title></circle>
+<circle cx="246.47" cy="367.17" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 76.769 ms; recording +3.533325 s; timestamp 1514590893392 µs</title></circle>
+<circle cx="251.24" cy="370.42" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 74.737 ms; recording +3.633321 s; timestamp 1514590993388 µs</title></circle>
+<circle cx="257.59" cy="363.83" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 78.859 ms; recording +3.766657 s; timestamp 1514591126724 µs</title></circle>
+<circle cx="263.95" cy="369.17" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 75.519 ms; recording +3.899985 s; timestamp 1514591260052 µs</title></circle>
+<circle cx="268.72" cy="368.16" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 76.151 ms; recording +3.999981 s; timestamp 1514591360048 µs</title></circle>
+<circle cx="275.08" cy="371.64" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 73.974 ms; recording +4.133311 s; timestamp 1514591493378 µs</title></circle>
+<circle cx="281.43" cy="365.99" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 77.507 ms; recording +4.266668 s; timestamp 1514591626735 µs</title></circle>
+<circle cx="286.20" cy="383.39" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 66.630 ms; recording +4.366663 s; timestamp 1514591726730 µs</title></circle>
+<circle cx="286.20" cy="442.54" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 29.660 ms; recording +4.366663 s; timestamp 1514591726730 µs</title></circle>
+<circle cx="294.15" cy="382.77" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 67.020 ms; recording +4.533330 s; timestamp 1514591893397 µs</title></circle>
+<circle cx="298.92" cy="381.69" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 67.694 ms; recording +4.633327 s; timestamp 1514591993394 µs</title></circle>
+<circle cx="305.27" cy="381.28" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 67.950 ms; recording +4.766655 s; timestamp 1514592126722 µs</title></circle>
+<circle cx="311.63" cy="390.46" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 62.210 ms; recording +4.899983 s; timestamp 1514592260050 µs</title></circle>
+<circle cx="317.99" cy="375.45" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 71.594 ms; recording +5.033315 s; timestamp 1514592393382 µs</title></circle>
+<circle cx="322.76" cy="403.14" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 54.287 ms; recording +5.133312 s; timestamp 1514592493379 µs</title></circle>
+<circle cx="329.11" cy="390.00" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 62.498 ms; recording +5.266667 s; timestamp 1514592626734 µs</title></circle>
+<circle cx="335.47" cy="391.79" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 61.382 ms; recording +5.399997 s; timestamp 1514592760064 µs</title></circle>
+<circle cx="341.83" cy="393.93" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 60.042 ms; recording +5.533328 s; timestamp 1514592893395 µs</title></circle>
+<circle cx="346.60" cy="392.78" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 60.763 ms; recording +5.633326 s; timestamp 1514592993393 µs</title></circle>
+<circle cx="354.54" cy="389.40" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 62.876 ms; recording +5.799989 s; timestamp 1514593160056 µs</title></circle>
+<circle cx="360.90" cy="351.52" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 86.547 ms; recording +5.933317 s; timestamp 1514593293384 µs</title></circle>
+<circle cx="360.90" cy="452.11" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 23.682 ms; recording +5.933317 s; timestamp 1514593293384 µs</title></circle>
+<circle cx="365.67" cy="385.64" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 65.226 ms; recording +6.033314 s; timestamp 1514593393381 µs</title></circle>
+<circle cx="372.03" cy="389.08" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 63.073 ms; recording +6.166647 s; timestamp 1514593526714 µs</title></circle>
+<circle cx="378.38" cy="387.98" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 63.762 ms; recording +6.299984 s; timestamp 1514593660051 µs</title></circle>
+<circle cx="384.74" cy="402.14" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 54.914 ms; recording +6.433336 s; timestamp 1514593793403 µs</title></circle>
+<circle cx="391.10" cy="386.13" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 64.917 ms; recording +6.566666 s; timestamp 1514593926733 µs</title></circle>
+<circle cx="395.87" cy="389.87" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 62.579 ms; recording +6.666662 s; timestamp 1514594026729 µs</title></circle>
+<circle cx="402.22" cy="383.29" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 66.696 ms; recording +6.799991 s; timestamp 1514594160058 µs</title></circle>
+<circle cx="408.58" cy="382.08" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 67.449 ms; recording +6.933319 s; timestamp 1514594293386 µs</title></circle>
+<circle cx="414.94" cy="389.41" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 62.866 ms; recording +7.066650 s; timestamp 1514594426717 µs</title></circle>
+<circle cx="421.30" cy="386.83" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 64.479 ms; recording +7.199980 s; timestamp 1514594560047 µs</title></circle>
+<circle cx="427.65" cy="347.40" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 89.122 ms; recording +7.333315 s; timestamp 1514594693382 µs</title></circle>
+<circle cx="432.42" cy="391.63" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 61.479 ms; recording +7.433332 s; timestamp 1514594793399 µs</title></circle>
+<circle cx="432.42" cy="455.80" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 21.373 ms; recording +7.433332 s; timestamp 1514594793399 µs</title></circle>
+<circle cx="438.78" cy="388.10" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 63.685 ms; recording +7.566662 s; timestamp 1514594926729 µs</title></circle>
+<circle cx="445.14" cy="395.18" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 59.265 ms; recording +7.699992 s; timestamp 1514595060059 µs</title></circle>
+<circle cx="451.49" cy="406.13" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 52.421 ms; recording +7.833324 s; timestamp 1514595193391 µs</title></circle>
+<circle cx="456.26" cy="404.72" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 53.301 ms; recording +7.933320 s; timestamp 1514595293387 µs</title></circle>
+<circle cx="462.62" cy="406.48" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 52.199 ms; recording +8.066653 s; timestamp 1514595426720 µs</title></circle>
+<circle cx="468.98" cy="416.84" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 45.724 ms; recording +8.199983 s; timestamp 1514595560050 µs</title></circle>
+<circle cx="475.33" cy="406.30" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 52.311 ms; recording +8.333320 s; timestamp 1514595693387 µs</title></circle>
+<circle cx="480.10" cy="409.33" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 50.421 ms; recording +8.433316 s; timestamp 1514595793383 µs</title></circle>
+<circle cx="486.46" cy="397.83" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 57.604 ms; recording +8.566671 s; timestamp 1514595926738 µs</title></circle>
+<circle cx="491.23" cy="400.90" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 55.685 ms; recording +8.666667 s; timestamp 1514596026734 µs</title></circle>
+<circle cx="497.58" cy="389.71" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 62.681 ms; recording +8.799995 s; timestamp 1514596160062 µs</title></circle>
+<circle cx="503.94" cy="373.53" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 72.792 ms; recording +8.933323 s; timestamp 1514596293390 µs</title></circle>
+<circle cx="510.30" cy="355.79" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 83.882 ms; recording +9.066652 s; timestamp 1514596426719 µs</title></circle>
+<circle cx="515.07" cy="343.45" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 91.595 ms; recording +9.166649 s; timestamp 1514596526716 µs</title></circle>
+<circle cx="521.42" cy="353.15" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 85.534 ms; recording +9.299988 s; timestamp 1514596660055 µs</title></circle>
+<circle cx="527.78" cy="323.26" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 104.213 ms; recording +9.433316 s; timestamp 1514596793383 µs</title></circle>
+<circle cx="527.78" cy="434.10" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 34.937 ms; recording +9.433316 s; timestamp 1514596793383 µs</title></circle>
+<circle cx="534.14" cy="307.28" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 114.199 ms; recording +9.566644 s; timestamp 1514596926711 µs</title></circle>
+<circle cx="540.50" cy="342.32" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 92.299 ms; recording +9.699996 s; timestamp 1514597060063 µs</title></circle>
+<circle cx="546.85" cy="348.22" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 88.610 ms; recording +9.833326 s; timestamp 1514597193393 µs</title></circle>
+<circle cx="551.62" cy="361.84" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 80.099 ms; recording +9.933323 s; timestamp 1514597293390 µs</title></circle>
+<circle cx="557.98" cy="292.73" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 123.294 ms; recording +10.066653 s; timestamp 1514597426720 µs</title></circle>
+<circle cx="564.34" cy="301.80" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 117.626 ms; recording +10.199986 s; timestamp 1514597560053 µs</title></circle>
+<circle cx="570.69" cy="307.86" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 113.838 ms; recording +10.333323 s; timestamp 1514597693390 µs</title></circle>
+<circle cx="575.46" cy="318.46" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 107.210 ms; recording +10.433312 s; timestamp 1514597793379 µs</title></circle>
+<circle cx="583.41" cy="246.71" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 152.058 ms; recording +10.599978 s; timestamp 1514597960045 µs</title></circle>
+<circle cx="589.77" cy="291.42" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 124.115 ms; recording +10.733334 s; timestamp 1514598093401 µs</title></circle>
+<circle cx="589.77" cy="422.47" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 42.204 ms; recording +10.733334 s; timestamp 1514598093401 µs</title></circle>
+<circle cx="596.12" cy="311.90" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 111.310 ms; recording +10.866662 s; timestamp 1514598226729 µs</title></circle>
+<circle cx="602.48" cy="316.75" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 108.280 ms; recording +10.999990 s; timestamp 1514598360057 µs</title></circle>
+<circle cx="608.84" cy="271.91" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 136.305 ms; recording +11.133319 s; timestamp 1514598493386 µs</title></circle>
+<circle cx="613.60" cy="282.99" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 129.382 ms; recording +11.233317 s; timestamp 1514598593384 µs</title></circle>
+<circle cx="621.55" cy="332.34" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 98.537 ms; recording +11.399983 s; timestamp 1514598760050 µs</title></circle>
+<circle cx="627.91" cy="303.76" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 116.403 ms; recording +11.533314 s; timestamp 1514598893381 µs</title></circle>
+<circle cx="634.27" cy="316.09" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 108.696 ms; recording +11.666642 s; timestamp 1514599026709 µs</title></circle>
+<circle cx="639.03" cy="414.58" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 47.140 ms; recording +11.766638 s; timestamp 1514599126705 µs</title></circle>
+<circle cx="639.03" cy="358.52" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 82.173 ms; recording +11.766638 s; timestamp 1514599126705 µs</title></circle>
+<circle cx="646.98" cy="340.04" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 93.722 ms; recording +11.933327 s; timestamp 1514599293394 µs</title></circle>
+<circle cx="651.75" cy="386.51" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 64.680 ms; recording +12.033328 s; timestamp 1514599393395 µs</title></circle>
+<circle cx="661.28" cy="362.99" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 79.384 ms; recording +12.233322 s; timestamp 1514599593389 µs</title></circle>
+<circle cx="666.05" cy="360.06" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 81.213 ms; recording +12.333318 s; timestamp 1514599693385 µs</title></circle>
+<circle cx="666.05" cy="444.65" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 28.343 ms; recording +12.333318 s; timestamp 1514599693385 µs</title></circle>
+<circle cx="674.00" cy="340.23" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 93.606 ms; recording +12.499985 s; timestamp 1514599860052 µs</title></circle>
+<circle cx="678.77" cy="312.35" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 111.032 ms; recording +12.599980 s; timestamp 1514599960047 µs</title></circle>
+<circle cx="686.71" cy="306.66" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 114.588 ms; recording +12.766642 s; timestamp 1514600126709 µs</title></circle>
+<circle cx="691.48" cy="336.99" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 95.630 ms; recording +12.866639 s; timestamp 1514600226706 µs</title></circle>
+<circle cx="699.43" cy="292.20" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 123.625 ms; recording +13.033325 s; timestamp 1514600393392 µs</title></circle>
+<circle cx="704.20" cy="299.47" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 119.080 ms; recording +13.133323 s; timestamp 1514600493390 µs</title></circle>
+<circle cx="712.14" cy="310.46" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 112.211 ms; recording +13.299985 s; timestamp 1514600660052 µs</title></circle>
+<circle cx="718.50" cy="269.26" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 137.963 ms; recording +13.433317 s; timestamp 1514600793384 µs</title></circle>
+<circle cx="718.50" cy="439.45" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 31.591 ms; recording +13.433317 s; timestamp 1514600793384 µs</title></circle>
+<circle cx="724.86" cy="339.96" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 93.775 ms; recording +13.566645 s; timestamp 1514600926712 µs</title></circle>
+<circle cx="731.21" cy="365.90" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 77.560 ms; recording +13.699978 s; timestamp 1514601060045 µs</title></circle>
+<circle cx="739.16" cy="352.32" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 86.050 ms; recording +13.866642 s; timestamp 1514601226709 µs</title></circle>
+<circle cx="745.52" cy="352.95" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 85.657 ms; recording +13.999972 s; timestamp 1514601360039 µs</title></circle>
+<circle cx="745.52" cy="438.93" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 31.918 ms; recording +13.999972 s; timestamp 1514601360039 µs</title></circle>
+<circle cx="753.47" cy="359.66" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 81.460 ms; recording +14.166660 s; timestamp 1514601526727 µs</title></circle>
+<circle cx="758.23" cy="367.33" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 76.669 ms; recording +14.266659 s; timestamp 1514601626726 µs</title></circle>
+<circle cx="766.18" cy="297.51" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 120.309 ms; recording +14.433320 s; timestamp 1514601793387 µs</title></circle>
+<circle cx="770.95" cy="312.92" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 110.673 ms; recording +14.533316 s; timestamp 1514601893383 µs</title></circle>
+<circle cx="770.95" cy="434.90" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 34.436 ms; recording +14.533316 s; timestamp 1514601893383 µs</title></circle>
+<circle cx="780.48" cy="309.50" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 112.813 ms; recording +14.733313 s; timestamp 1514602093380 µs</title></circle>
+<circle cx="785.25" cy="319.06" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 106.840 ms; recording +14.833311 s; timestamp 1514602193378 µs</title></circle>
+<circle cx="794.79" cy="273.28" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 135.450 ms; recording +15.033305 s; timestamp 1514602393372 µs</title></circle>
+<circle cx="799.56" cy="287.14" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 126.788 ms; recording +15.133327 s; timestamp 1514602493394 µs</title></circle>
+<circle cx="805.91" cy="312.09" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 111.195 ms; recording +15.266656 s; timestamp 1514602626723 µs</title></circle>
+<circle cx="812.27" cy="273.99" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 135.009 ms; recording +15.399986 s; timestamp 1514602760053 µs</title></circle>
+<circle cx="818.63" cy="263.94" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 141.289 ms; recording +15.533316 s; timestamp 1514602893383 µs</title></circle>
+<circle cx="823.40" cy="254.68" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 147.077 ms; recording +15.633314 s; timestamp 1514602993381 µs</title></circle>
+<circle cx="823.40" cy="415.18" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 46.765 ms; recording +15.633314 s; timestamp 1514602993381 µs</title></circle>
+<circle cx="831.34" cy="289.84" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 125.098 ms; recording +15.799979 s; timestamp 1514603160046 µs</title></circle>
+<circle cx="837.70" cy="273.34" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 135.411 ms; recording +15.933315 s; timestamp 1514603293382 µs</title></circle>
+<circle cx="844.06" cy="252.63" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 148.358 ms; recording +16.066644 s; timestamp 1514603426711 µs</title></circle>
+<circle cx="850.42" cy="259.18" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 144.262 ms; recording +16.199994 s; timestamp 1514603560061 µs</title></circle>
+<circle cx="856.77" cy="242.49" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 154.697 ms; recording +16.333327 s; timestamp 1514603693394 µs</title></circle>
+<circle cx="861.54" cy="273.44" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 135.353 ms; recording +16.433324 s; timestamp 1514603793391 µs</title></circle>
+<circle cx="869.49" cy="243.51" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 154.057 ms; recording +16.599984 s; timestamp 1514603960051 µs</title></circle>
+<circle cx="875.84" cy="146.91" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 214.432 ms; recording +16.733314 s; timestamp 1514604093381 µs</title></circle>
+<circle cx="875.84" cy="420.05" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 43.719 ms; recording +16.733314 s; timestamp 1514604093381 µs</title></circle>
+<circle cx="882.20" cy="248.19" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 151.129 ms; recording +16.866650 s; timestamp 1514604226717 µs</title></circle>
+<circle cx="888.56" cy="302.60" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 117.123 ms; recording +16.999978 s; timestamp 1514604360045 µs</title></circle>
+<circle cx="894.92" cy="210.89" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 174.444 ms; recording +17.133304 s; timestamp 1514604493371 µs</title></circle>
+<circle cx="901.27" cy="192.99" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 185.631 ms; recording +17.266635 s; timestamp 1514604626702 µs</title></circle>
+<circle cx="901.27" cy="419.21" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 44.245 ms; recording +17.266635 s; timestamp 1514604626702 µs</title></circle>
+<circle cx="913.99" cy="217.41" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 170.371 ms; recording +17.533320 s; timestamp 1514604893387 µs</title></circle>
+<circle cx="913.99" cy="430.67" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 37.078 ms; recording +17.533320 s; timestamp 1514604893387 µs</title></circle>
+<circle cx="920.35" cy="204.61" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 178.366 ms; recording +17.666653 s; timestamp 1514605026720 µs</title></circle>
+<circle cx="926.70" cy="196.55" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 183.405 ms; recording +17.799982 s; timestamp 1514605160049 µs</title></circle>
+<circle cx="933.06" cy="243.06" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 154.335 ms; recording +17.933310 s; timestamp 1514605293377 µs</title></circle>
+<circle cx="939.42" cy="300.56" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 118.400 ms; recording +18.066645 s; timestamp 1514605426712 µs</title></circle>
+<circle cx="939.42" cy="434.49" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 34.694 ms; recording +18.066645 s; timestamp 1514605426712 µs</title></circle>
+<circle cx="947.36" cy="312.01" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 111.245 ms; recording +18.233305 s; timestamp 1514605593372 µs</title></circle>
+<circle cx="953.72" cy="348.50" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 88.437 ms; recording +18.366634 s; timestamp 1514605726701 µs</title></circle>
+<circle cx="961.67" cy="316.01" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 108.746 ms; recording +18.533323 s; timestamp 1514605893390 µs</title></circle>
+<circle cx="969.62" cy="348.05" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 88.720 ms; recording +18.699984 s; timestamp 1514606060051 µs</title></circle>
+<circle cx="969.62" cy="450.93" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 24.421 ms; recording +18.699984 s; timestamp 1514606060051 µs</title></circle>
+<circle cx="975.97" cy="351.89" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 86.317 ms; recording +18.833314 s; timestamp 1514606193381 µs</title></circle>
+<circle cx="982.33" cy="311.01" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 111.871 ms; recording +18.966647 s; timestamp 1514606326714 µs</title></circle>
+<circle cx="990.28" cy="333.89" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 97.567 ms; recording +19.133309 s; timestamp 1514606493376 µs</title></circle>
+<circle cx="995.04" cy="330.62" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 99.613 ms; recording +19.233306 s; timestamp 1514606593373 µs</title></circle>
+<circle cx="1004.58" cy="335.60" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 96.500 ms; recording +19.433304 s; timestamp 1514606793371 µs</title></circle>
+<circle cx="1009.35" cy="338.86" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 94.462 ms; recording +19.533324 s; timestamp 1514606893391 µs</title></circle>
+<circle cx="1009.35" cy="438.88" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 31.950 ms; recording +19.533324 s; timestamp 1514606893391 µs</title></circle>
+<circle cx="1017.30" cy="350.07" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 87.458 ms; recording +19.699989 s; timestamp 1514607060056 µs</title></circle>
+<circle cx="1022.06" cy="382.68" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 67.076 ms; recording +19.799985 s; timestamp 1514607160052 µs</title></circle>
+<circle cx="1028.42" cy="350.79" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 87.004 ms; recording +19.933314 s; timestamp 1514607293381 µs</title></circle>
+<circle cx="1034.78" cy="359.45" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 81.593 ms; recording +20.066644 s; timestamp 1514607426711 µs</title></circle>
+<circle cx="1042.72" cy="360.69" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 80.818 ms; recording +20.233310 s; timestamp 1514607593377 µs</title></circle>
+<circle cx="1047.49" cy="358.69" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 82.070 ms; recording +20.333306 s; timestamp 1514607693373 µs</title></circle>
+<circle cx="1053.85" cy="350.39" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 87.257 ms; recording +20.466638 s; timestamp 1514607826705 µs</title></circle>
+<circle cx="1060.21" cy="349.25" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 87.969 ms; recording +20.599990 s; timestamp 1514607960057 µs</title></circle>
+<circle cx="1060.21" cy="442.90" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 29.436 ms; recording +20.599990 s; timestamp 1514607960057 µs</title></circle>
+<circle cx="1066.56" cy="330.19" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 99.879 ms; recording +20.733320 s; timestamp 1514608093387 µs</title></circle>
+<circle cx="1071.33" cy="326.05" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 102.469 ms; recording +20.833317 s; timestamp 1514608193384 µs</title></circle>
+<circle cx="1077.69" cy="261.76" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 142.652 ms; recording +20.966647 s; timestamp 1514608326714 µs</title></circle>
+<circle cx="1084.05" cy="279.44" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 131.599 ms; recording +21.099980 s; timestamp 1514608460047 µs</title></circle>
+<circle cx="1090.40" cy="241.95" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 155.030 ms; recording +21.233310 s; timestamp 1514608593377 µs</title></circle>
+<circle cx="1095.17" cy="290.23" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 124.856 ms; recording +21.333308 s; timestamp 1514608693375 µs</title></circle>
+<circle cx="1101.53" cy="260.66" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 143.337 ms; recording +21.466642 s; timestamp 1514608826709 µs</title></circle>
+<circle cx="1107.89" cy="276.85" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 133.220 ms; recording +21.599970 s; timestamp 1514608960037 µs</title></circle>
+<circle cx="1114.24" cy="303.31" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 116.683 ms; recording +21.733323 s; timestamp 1514609093390 µs</title></circle>
+<circle cx="1119.01" cy="286.17" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 127.395 ms; recording +21.833320 s; timestamp 1514609193387 µs</title></circle>
+<circle cx="1126.96" cy="311.39" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 111.629 ms; recording +21.999983 s; timestamp 1514609360050 µs</title></circle>
+<circle cx="1131.73" cy="309.68" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 112.698 ms; recording +22.099980 s; timestamp 1514609460047 µs</title></circle>
+<circle cx="1138.08" cy="412.47" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 48.457 ms; recording +22.233313 s; timestamp 1514609593380 µs</title></circle>
+<circle cx="1144.44" cy="306.94" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 114.412 ms; recording +22.366645 s; timestamp 1514609726712 µs</title></circle>
+<circle cx="1144.44" cy="432.61" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 35.866 ms; recording +22.366645 s; timestamp 1514609726712 µs</title></circle>
+<circle cx="1150.80" cy="325.90" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 102.565 ms; recording +22.499972 s; timestamp 1514609860039 µs</title></circle>
+<circle cx="1157.16" cy="373.20" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 72.998 ms; recording +22.633304 s; timestamp 1514609993371 µs</title></circle>
+<circle cx="1163.51" cy="356.29" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 83.566 ms; recording +22.766656 s; timestamp 1514610126723 µs</title></circle>
+<circle cx="1169.87" cy="359.18" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 81.763 ms; recording +22.899986 s; timestamp 1514610260053 µs</title></circle>
+<circle cx="1169.87" cy="440.05" r="2.5" fill="#2369bd"><title>Run 1 baseline · e4e8104628cf: 31.219 ms; recording +22.899986 s; timestamp 1514610260053 µs</title></circle>
+<circle cx="875.84441152" cy="146.90936319999997" r="5" fill="white" stroke="#2369bd" stroke-width="2"/><text x="865.84441152" y="126.90936319999997" text-anchor="end" font-size="14" fill="#2369bd" font-weight="bold">Max 214.432 ms</text>
+<line x1="98" x2="130" y1="108" y2="108" stroke="#2369bd" stroke-width="3"/><text x="140" y="113" font-size="14">Run 1 baseline · e4e8104628cf</text>
+<polyline points="78.00,422.60 84.36,423.01 89.13,422.29 93.89,424.35 100.25,419.49 105.02,420.44 111.38,423.93 117.73,415.89 122.50,413.43 127.27,417.42 133.63,407.98 139.98,399.87 144.75,402.33 151.11,399.41 155.88,410.91 162.23,397.03 168.59,402.73 173.36,402.65 178.13,399.23 184.49,407.82 189.25,386.71 195.61,377.98 200.38,377.92 206.74,383.35 211.50,380.17 217.86,386.00 222.63,376.45 228.99,369.68 235.34,383.07 240.11,375.35 246.47,370.57 251.24,372.45 257.59,366.86 263.95,368.15 268.72,364.01 275.08,373.72 281.43,371.45 286.20,376.93 286.20,443.91 294.15,380.93 298.92,381.09 305.27,379.27 311.63,390.65 317.99,375.87 322.76,402.80 329.11,390.01 335.47,390.27 341.83,392.74 346.60,393.48 354.54,389.99 360.90,336.57 360.90,452.17 365.67,388.03 372.03,392.94 378.38,388.32 384.74,401.11 391.10,388.97 395.87,392.01 402.22,383.63 408.58,380.77 414.94,387.75 421.30,387.32 427.65,342.13 432.42,393.83 432.42,456.02 438.78,386.70 445.14,394.11 451.49,407.18 456.26,405.40 462.62,407.03 468.98,416.62 475.33,405.07 480.10,407.53 486.46,400.77 491.23,400.32 497.58,390.20 503.94,376.59 510.30,355.52 515.07,345.80 521.42,351.43 527.78,317.29 527.78,434.03 534.14,305.21 540.50,338.97 546.85,348.98 551.62,357.25 557.98,292.52 564.34,302.78 570.69,306.01 575.46,318.98 583.41,248.90 589.77,293.09 589.77,422.78 596.12,313.06 602.48,315.79 608.84,270.90 613.60,282.12 621.55,332.83 627.91,299.84 634.27,311.15 639.03,416.62 639.03,358.36 646.98,339.51 651.75,385.35 661.28,360.08 666.05,358.78 666.05,444.13 674.00,337.52 678.77,311.96 686.71,314.45 691.48,336.98 699.43,285.36 704.20,297.67 712.14,307.81 718.50,266.30 718.50,439.50 724.86,339.38 731.21,367.82 739.16,348.85 745.52,353.57 745.52,437.54 753.47,358.75 758.23,366.27 766.18,295.85 770.95,313.03 770.95,435.21 780.48,309.08 785.25,315.03 794.79,275.06 799.56,286.82 805.91,310.33 812.27,272.75 818.63,262.17 823.40,256.69 823.40,414.02 831.34,292.10 837.70,268.67 844.06,252.28 850.42,258.00 856.77,241.30 861.54,277.77 869.49,246.78 875.84,149.74 875.84,420.86 882.20,253.83 888.56,301.61 894.92,213.07 901.27,197.86 901.27,420.52 913.99,218.11 913.99,430.28 920.35,207.91 926.70,200.07 933.06,244.85 939.42,301.23 939.42,431.65 947.36,314.99 953.72,350.07 961.67,317.78 969.62,349.28 969.62,451.74 975.97,353.39 982.33,313.21 990.28,335.78 995.04,331.14 1004.58,331.02 1009.35,340.75 1009.35,441.51 1017.30,354.41 1022.06,380.33 1028.42,356.25 1034.78,363.16 1042.72,359.72 1047.49,358.56 1053.85,352.29 1060.21,343.47 1060.21,443.87 1066.56,329.30 1071.33,325.53 1077.69,264.77 1084.05,281.37 1090.40,248.40 1095.17,293.03 1101.53,260.76 1107.89,279.76 1114.24,301.73 1119.01,286.26 1126.96,313.09 1131.73,310.11 1138.08,412.90 1144.44,311.88 1144.44,430.58 1150.80,325.49 1157.16,372.74 1163.51,356.53 1169.87,359.36 1169.87,440.67" fill="none" stroke="#d65b19" stroke-width="1.8" opacity="0.9"/>
+<circle cx="78.00" cy="422.60" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 42.126 ms; recording +0.000000 s; timestamp 1514587360067 µs</title></circle>
+<circle cx="84.36" cy="423.01" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 41.867 ms; recording +0.133329 s; timestamp 1514587493396 µs</title></circle>
+<circle cx="89.13" cy="422.29" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 42.318 ms; recording +0.233331 s; timestamp 1514587593398 µs</title></circle>
+<circle cx="93.89" cy="424.35" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 41.028 ms; recording +0.333327 s; timestamp 1514587693394 µs</title></circle>
+<circle cx="100.25" cy="419.49" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 44.067 ms; recording +0.466656 s; timestamp 1514587826723 µs</title></circle>
+<circle cx="105.02" cy="420.44" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 43.477 ms; recording +0.566651 s; timestamp 1514587926718 µs</title></circle>
+<circle cx="111.38" cy="423.93" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 41.295 ms; recording +0.699980 s; timestamp 1514588060047 µs</title></circle>
+<circle cx="117.73" cy="415.89" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 46.316 ms; recording +0.833313 s; timestamp 1514588193380 µs</title></circle>
+<circle cx="122.50" cy="413.43" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 47.856 ms; recording +0.933338 s; timestamp 1514588293405 µs</title></circle>
+<circle cx="127.27" cy="417.42" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 45.360 ms; recording +1.033335 s; timestamp 1514588393402 µs</title></circle>
+<circle cx="133.63" cy="407.98" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 51.266 ms; recording +1.166664 s; timestamp 1514588526731 µs</title></circle>
+<circle cx="139.98" cy="399.87" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 56.329 ms; recording +1.299995 s; timestamp 1514588660062 µs</title></circle>
+<circle cx="144.75" cy="402.33" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 54.794 ms; recording +1.399994 s; timestamp 1514588760061 µs</title></circle>
+<circle cx="151.11" cy="399.41" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 56.619 ms; recording +1.533322 s; timestamp 1514588893389 µs</title></circle>
+<circle cx="155.88" cy="410.91" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 49.430 ms; recording +1.633318 s; timestamp 1514588993385 µs</title></circle>
+<circle cx="162.23" cy="397.03" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 58.105 ms; recording +1.766651 s; timestamp 1514589126718 µs</title></circle>
+<circle cx="168.59" cy="402.73" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 54.541 ms; recording +1.899981 s; timestamp 1514589260048 µs</title></circle>
+<circle cx="173.36" cy="402.65" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 54.595 ms; recording +2.000003 s; timestamp 1514589360070 µs</title></circle>
+<circle cx="178.13" cy="399.23" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 56.734 ms; recording +2.100003 s; timestamp 1514589460070 µs</title></circle>
+<circle cx="184.49" cy="407.82" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 51.361 ms; recording +2.233330 s; timestamp 1514589593397 µs</title></circle>
+<circle cx="189.25" cy="386.71" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 64.559 ms; recording +2.333330 s; timestamp 1514589693397 µs</title></circle>
+<circle cx="195.61" cy="377.98" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 70.011 ms; recording +2.466658 s; timestamp 1514589826725 µs</title></circle>
+<circle cx="200.38" cy="377.92" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 70.053 ms; recording +2.566654 s; timestamp 1514589926721 µs</title></circle>
+<circle cx="206.74" cy="383.35" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 66.658 ms; recording +2.699987 s; timestamp 1514590060054 µs</title></circle>
+<circle cx="211.50" cy="380.17" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 68.644 ms; recording +2.799984 s; timestamp 1514590160051 µs</title></circle>
+<circle cx="217.86" cy="386.00" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 65.001 ms; recording +2.933313 s; timestamp 1514590293380 µs</title></circle>
+<circle cx="222.63" cy="376.45" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 70.966 ms; recording +3.033311 s; timestamp 1514590393378 µs</title></circle>
+<circle cx="228.99" cy="369.68" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 75.200 ms; recording +3.166666 s; timestamp 1514590526733 µs</title></circle>
+<circle cx="235.34" cy="383.07" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 66.829 ms; recording +3.299997 s; timestamp 1514590660064 µs</title></circle>
+<circle cx="240.11" cy="375.35" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 71.655 ms; recording +3.399994 s; timestamp 1514590760061 µs</title></circle>
+<circle cx="246.47" cy="370.57" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 74.641 ms; recording +3.533325 s; timestamp 1514590893392 µs</title></circle>
+<circle cx="251.24" cy="372.45" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 73.471 ms; recording +3.633321 s; timestamp 1514590993388 µs</title></circle>
+<circle cx="257.59" cy="366.86" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 76.962 ms; recording +3.766657 s; timestamp 1514591126724 µs</title></circle>
+<circle cx="263.95" cy="368.15" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 76.159 ms; recording +3.899985 s; timestamp 1514591260052 µs</title></circle>
+<circle cx="268.72" cy="364.01" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 78.747 ms; recording +3.999981 s; timestamp 1514591360048 µs</title></circle>
+<circle cx="275.08" cy="373.72" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 72.672 ms; recording +4.133311 s; timestamp 1514591493378 µs</title></circle>
+<circle cx="281.43" cy="371.45" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 74.094 ms; recording +4.266668 s; timestamp 1514591626735 µs</title></circle>
+<circle cx="286.20" cy="376.93" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 70.672 ms; recording +4.366663 s; timestamp 1514591726730 µs</title></circle>
+<circle cx="286.20" cy="443.91" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 28.807 ms; recording +4.366663 s; timestamp 1514591726730 µs</title></circle>
+<circle cx="294.15" cy="380.93" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 68.167 ms; recording +4.533330 s; timestamp 1514591893397 µs</title></circle>
+<circle cx="298.92" cy="381.09" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 68.070 ms; recording +4.633327 s; timestamp 1514591993394 µs</title></circle>
+<circle cx="305.27" cy="379.27" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 69.209 ms; recording +4.766655 s; timestamp 1514592126722 µs</title></circle>
+<circle cx="311.63" cy="390.65" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 62.094 ms; recording +4.899983 s; timestamp 1514592260050 µs</title></circle>
+<circle cx="317.99" cy="375.87" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 71.329 ms; recording +5.033315 s; timestamp 1514592393382 µs</title></circle>
+<circle cx="322.76" cy="402.80" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 54.498 ms; recording +5.133312 s; timestamp 1514592493379 µs</title></circle>
+<circle cx="329.11" cy="390.01" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 62.497 ms; recording +5.266667 s; timestamp 1514592626734 µs</title></circle>
+<circle cx="335.47" cy="390.27" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 62.331 ms; recording +5.399997 s; timestamp 1514592760064 µs</title></circle>
+<circle cx="341.83" cy="392.74" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 60.789 ms; recording +5.533328 s; timestamp 1514592893395 µs</title></circle>
+<circle cx="346.60" cy="393.48" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 60.325 ms; recording +5.633326 s; timestamp 1514592993393 µs</title></circle>
+<circle cx="354.54" cy="389.99" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 62.505 ms; recording +5.799989 s; timestamp 1514593160056 µs</title></circle>
+<circle cx="360.90" cy="336.57" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 95.892 ms; recording +5.933317 s; timestamp 1514593293384 µs</title></circle>
+<circle cx="360.90" cy="452.17" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 23.646 ms; recording +5.933317 s; timestamp 1514593293384 µs</title></circle>
+<circle cx="365.67" cy="388.03" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 63.730 ms; recording +6.033314 s; timestamp 1514593393381 µs</title></circle>
+<circle cx="372.03" cy="392.94" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 60.663 ms; recording +6.166647 s; timestamp 1514593526714 µs</title></circle>
+<circle cx="378.38" cy="388.32" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 63.550 ms; recording +6.299984 s; timestamp 1514593660051 µs</title></circle>
+<circle cx="384.74" cy="401.11" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 55.554 ms; recording +6.433336 s; timestamp 1514593793403 µs</title></circle>
+<circle cx="391.10" cy="388.97" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 63.145 ms; recording +6.566666 s; timestamp 1514593926733 µs</title></circle>
+<circle cx="395.87" cy="392.01" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 61.245 ms; recording +6.666662 s; timestamp 1514594026729 µs</title></circle>
+<circle cx="402.22" cy="383.63" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 66.481 ms; recording +6.799991 s; timestamp 1514594160058 µs</title></circle>
+<circle cx="408.58" cy="380.77" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 68.270 ms; recording +6.933319 s; timestamp 1514594293386 µs</title></circle>
+<circle cx="414.94" cy="387.75" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 63.905 ms; recording +7.066650 s; timestamp 1514594426717 µs</title></circle>
+<circle cx="421.30" cy="387.32" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 64.176 ms; recording +7.199980 s; timestamp 1514594560047 µs</title></circle>
+<circle cx="427.65" cy="342.13" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 92.420 ms; recording +7.333315 s; timestamp 1514594693382 µs</title></circle>
+<circle cx="432.42" cy="393.83" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 60.107 ms; recording +7.433332 s; timestamp 1514594793399 µs</title></circle>
+<circle cx="432.42" cy="456.02" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 21.239 ms; recording +7.433332 s; timestamp 1514594793399 µs</title></circle>
+<circle cx="438.78" cy="386.70" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 64.562 ms; recording +7.566662 s; timestamp 1514594926729 µs</title></circle>
+<circle cx="445.14" cy="394.11" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 59.933 ms; recording +7.699992 s; timestamp 1514595060059 µs</title></circle>
+<circle cx="451.49" cy="407.18" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 51.765 ms; recording +7.833324 s; timestamp 1514595193391 µs</title></circle>
+<circle cx="456.26" cy="405.40" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 52.873 ms; recording +7.933320 s; timestamp 1514595293387 µs</title></circle>
+<circle cx="462.62" cy="407.03" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 51.856 ms; recording +8.066653 s; timestamp 1514595426720 µs</title></circle>
+<circle cx="468.98" cy="416.62" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 45.863 ms; recording +8.199983 s; timestamp 1514595560050 µs</title></circle>
+<circle cx="475.33" cy="405.07" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 53.083 ms; recording +8.333320 s; timestamp 1514595693387 µs</title></circle>
+<circle cx="480.10" cy="407.53" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 51.545 ms; recording +8.433316 s; timestamp 1514595793383 µs</title></circle>
+<circle cx="486.46" cy="400.77" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 55.768 ms; recording +8.566671 s; timestamp 1514595926738 µs</title></circle>
+<circle cx="491.23" cy="400.32" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 56.047 ms; recording +8.666667 s; timestamp 1514596026734 µs</title></circle>
+<circle cx="497.58" cy="390.20" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 62.377 ms; recording +8.799995 s; timestamp 1514596160062 µs</title></circle>
+<circle cx="503.94" cy="376.59" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 70.881 ms; recording +8.933323 s; timestamp 1514596293390 µs</title></circle>
+<circle cx="510.30" cy="355.52" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 84.050 ms; recording +9.066652 s; timestamp 1514596426719 µs</title></circle>
+<circle cx="515.07" cy="345.80" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 90.126 ms; recording +9.166649 s; timestamp 1514596526716 µs</title></circle>
+<circle cx="521.42" cy="351.43" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 86.609 ms; recording +9.299988 s; timestamp 1514596660055 µs</title></circle>
+<circle cx="527.78" cy="317.29" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 107.947 ms; recording +9.433316 s; timestamp 1514596793383 µs</title></circle>
+<circle cx="527.78" cy="434.03" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 34.981 ms; recording +9.433316 s; timestamp 1514596793383 µs</title></circle>
+<circle cx="534.14" cy="305.21" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 115.493 ms; recording +9.566644 s; timestamp 1514596926711 µs</title></circle>
+<circle cx="540.50" cy="338.97" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 94.391 ms; recording +9.699996 s; timestamp 1514597060063 µs</title></circle>
+<circle cx="546.85" cy="348.98" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 88.136 ms; recording +9.833326 s; timestamp 1514597193393 µs</title></circle>
+<circle cx="551.62" cy="357.25" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 82.971 ms; recording +9.933323 s; timestamp 1514597293390 µs</title></circle>
+<circle cx="557.98" cy="292.52" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 123.427 ms; recording +10.066653 s; timestamp 1514597426720 µs</title></circle>
+<circle cx="564.34" cy="302.78" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 117.011 ms; recording +10.199986 s; timestamp 1514597560053 µs</title></circle>
+<circle cx="570.69" cy="306.01" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 114.993 ms; recording +10.333323 s; timestamp 1514597693390 µs</title></circle>
+<circle cx="575.46" cy="318.98" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 106.890 ms; recording +10.433312 s; timestamp 1514597793379 µs</title></circle>
+<circle cx="583.41" cy="248.90" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 150.687 ms; recording +10.599978 s; timestamp 1514597960045 µs</title></circle>
+<circle cx="589.77" cy="293.09" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 123.068 ms; recording +10.733334 s; timestamp 1514598093401 µs</title></circle>
+<circle cx="589.77" cy="422.78" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 42.014 ms; recording +10.733334 s; timestamp 1514598093401 µs</title></circle>
+<circle cx="596.12" cy="313.06" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 110.588 ms; recording +10.866662 s; timestamp 1514598226729 µs</title></circle>
+<circle cx="602.48" cy="315.79" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 108.882 ms; recording +10.999990 s; timestamp 1514598360057 µs</title></circle>
+<circle cx="608.84" cy="270.90" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 136.938 ms; recording +11.133319 s; timestamp 1514598493386 µs</title></circle>
+<circle cx="613.60" cy="282.12" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 129.925 ms; recording +11.233317 s; timestamp 1514598593384 µs</title></circle>
+<circle cx="621.55" cy="332.83" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 98.230 ms; recording +11.399983 s; timestamp 1514598760050 µs</title></circle>
+<circle cx="627.91" cy="299.84" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 118.848 ms; recording +11.533314 s; timestamp 1514598893381 µs</title></circle>
+<circle cx="634.27" cy="311.15" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 111.780 ms; recording +11.666642 s; timestamp 1514599026709 µs</title></circle>
+<circle cx="639.03" cy="416.62" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 45.865 ms; recording +11.766638 s; timestamp 1514599126705 µs</title></circle>
+<circle cx="639.03" cy="358.36" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 82.272 ms; recording +11.766638 s; timestamp 1514599126705 µs</title></circle>
+<circle cx="646.98" cy="339.51" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 94.058 ms; recording +11.933327 s; timestamp 1514599293394 µs</title></circle>
+<circle cx="651.75" cy="385.35" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 65.404 ms; recording +12.033328 s; timestamp 1514599393395 µs</title></circle>
+<circle cx="661.28" cy="360.08" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 81.197 ms; recording +12.233322 s; timestamp 1514599593389 µs</title></circle>
+<circle cx="666.05" cy="358.78" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 82.012 ms; recording +12.333318 s; timestamp 1514599693385 µs</title></circle>
+<circle cx="666.05" cy="444.13" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 28.666 ms; recording +12.333318 s; timestamp 1514599693385 µs</title></circle>
+<circle cx="674.00" cy="337.52" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 95.298 ms; recording +12.499985 s; timestamp 1514599860052 µs</title></circle>
+<circle cx="678.77" cy="311.96" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 111.272 ms; recording +12.599980 s; timestamp 1514599960047 µs</title></circle>
+<circle cx="686.71" cy="314.45" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 109.721 ms; recording +12.766642 s; timestamp 1514600126709 µs</title></circle>
+<circle cx="691.48" cy="336.98" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 95.637 ms; recording +12.866639 s; timestamp 1514600226706 µs</title></circle>
+<circle cx="699.43" cy="285.36" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 127.900 ms; recording +13.033325 s; timestamp 1514600393392 µs</title></circle>
+<circle cx="704.20" cy="297.67" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 120.207 ms; recording +13.133323 s; timestamp 1514600493390 µs</title></circle>
+<circle cx="712.14" cy="307.81" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 113.866 ms; recording +13.299985 s; timestamp 1514600660052 µs</title></circle>
+<circle cx="718.50" cy="266.30" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 139.810 ms; recording +13.433317 s; timestamp 1514600793384 µs</title></circle>
+<circle cx="718.50" cy="439.50" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 31.563 ms; recording +13.433317 s; timestamp 1514600793384 µs</title></circle>
+<circle cx="724.86" cy="339.38" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 94.137 ms; recording +13.566645 s; timestamp 1514600926712 µs</title></circle>
+<circle cx="731.21" cy="367.82" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 76.364 ms; recording +13.699978 s; timestamp 1514601060045 µs</title></circle>
+<circle cx="739.16" cy="348.85" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 88.216 ms; recording +13.866642 s; timestamp 1514601226709 µs</title></circle>
+<circle cx="745.52" cy="353.57" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 85.269 ms; recording +13.999972 s; timestamp 1514601360039 µs</title></circle>
+<circle cx="745.52" cy="437.54" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 32.785 ms; recording +13.999972 s; timestamp 1514601360039 µs</title></circle>
+<circle cx="753.47" cy="358.75" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 82.032 ms; recording +14.166660 s; timestamp 1514601526727 µs</title></circle>
+<circle cx="758.23" cy="366.27" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 77.330 ms; recording +14.266659 s; timestamp 1514601626726 µs</title></circle>
+<circle cx="766.18" cy="295.85" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 121.341 ms; recording +14.433320 s; timestamp 1514601793387 µs</title></circle>
+<circle cx="770.95" cy="313.03" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 110.603 ms; recording +14.533316 s; timestamp 1514601893383 µs</title></circle>
+<circle cx="770.95" cy="435.21" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 34.246 ms; recording +14.533316 s; timestamp 1514601893383 µs</title></circle>
+<circle cx="780.48" cy="309.08" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 113.075 ms; recording +14.733313 s; timestamp 1514602093380 µs</title></circle>
+<circle cx="785.25" cy="315.03" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 109.358 ms; recording +14.833311 s; timestamp 1514602193378 µs</title></circle>
+<circle cx="794.79" cy="275.06" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 134.337 ms; recording +15.033305 s; timestamp 1514602393372 µs</title></circle>
+<circle cx="799.56" cy="286.82" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 126.988 ms; recording +15.133327 s; timestamp 1514602493394 µs</title></circle>
+<circle cx="805.91" cy="310.33" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 112.295 ms; recording +15.266656 s; timestamp 1514602626723 µs</title></circle>
+<circle cx="812.27" cy="272.75" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 135.778 ms; recording +15.399986 s; timestamp 1514602760053 µs</title></circle>
+<circle cx="818.63" cy="262.17" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 142.396 ms; recording +15.533316 s; timestamp 1514602893383 µs</title></circle>
+<circle cx="823.40" cy="256.69" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 145.819 ms; recording +15.633314 s; timestamp 1514602993381 µs</title></circle>
+<circle cx="823.40" cy="414.02" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 47.490 ms; recording +15.633314 s; timestamp 1514602993381 µs</title></circle>
+<circle cx="831.34" cy="292.10" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 123.687 ms; recording +15.799979 s; timestamp 1514603160046 µs</title></circle>
+<circle cx="837.70" cy="268.67" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 138.332 ms; recording +15.933315 s; timestamp 1514603293382 µs</title></circle>
+<circle cx="844.06" cy="252.28" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 148.574 ms; recording +16.066644 s; timestamp 1514603426711 µs</title></circle>
+<circle cx="850.42" cy="258.00" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 145.002 ms; recording +16.199994 s; timestamp 1514603560061 µs</title></circle>
+<circle cx="856.77" cy="241.30" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 155.440 ms; recording +16.333327 s; timestamp 1514603693394 µs</title></circle>
+<circle cx="861.54" cy="277.77" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 132.646 ms; recording +16.433324 s; timestamp 1514603793391 µs</title></circle>
+<circle cx="869.49" cy="246.78" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 152.012 ms; recording +16.599984 s; timestamp 1514603960051 µs</title></circle>
+<circle cx="875.84" cy="149.74" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 212.666 ms; recording +16.733314 s; timestamp 1514604093381 µs</title></circle>
+<circle cx="875.84" cy="420.86" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 43.212 ms; recording +16.733314 s; timestamp 1514604093381 µs</title></circle>
+<circle cx="882.20" cy="253.83" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 147.605 ms; recording +16.866650 s; timestamp 1514604226717 µs</title></circle>
+<circle cx="888.56" cy="301.61" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 117.743 ms; recording +16.999978 s; timestamp 1514604360045 µs</title></circle>
+<circle cx="894.92" cy="213.07" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 173.084 ms; recording +17.133304 s; timestamp 1514604493371 µs</title></circle>
+<circle cx="901.27" cy="197.86" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 182.585 ms; recording +17.266635 s; timestamp 1514604626702 µs</title></circle>
+<circle cx="901.27" cy="420.52" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 43.426 ms; recording +17.266635 s; timestamp 1514604626702 µs</title></circle>
+<circle cx="913.99" cy="218.11" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 169.930 ms; recording +17.533320 s; timestamp 1514604893387 µs</title></circle>
+<circle cx="913.99" cy="430.28" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 37.326 ms; recording +17.533320 s; timestamp 1514604893387 µs</title></circle>
+<circle cx="920.35" cy="207.91" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 176.303 ms; recording +17.666653 s; timestamp 1514605026720 µs</title></circle>
+<circle cx="926.70" cy="200.07" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 181.206 ms; recording +17.799982 s; timestamp 1514605160049 µs</title></circle>
+<circle cx="933.06" cy="244.85" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 153.216 ms; recording +17.933310 s; timestamp 1514605293377 µs</title></circle>
+<circle cx="939.42" cy="301.23" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 117.984 ms; recording +18.066645 s; timestamp 1514605426712 µs</title></circle>
+<circle cx="939.42" cy="431.65" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 36.469 ms; recording +18.066645 s; timestamp 1514605426712 µs</title></circle>
+<circle cx="947.36" cy="314.99" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 109.384 ms; recording +18.233305 s; timestamp 1514605593372 µs</title></circle>
+<circle cx="953.72" cy="350.07" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 87.456 ms; recording +18.366634 s; timestamp 1514605726701 µs</title></circle>
+<circle cx="961.67" cy="317.78" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 107.638 ms; recording +18.533323 s; timestamp 1514605893390 µs</title></circle>
+<circle cx="969.62" cy="349.28" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 87.949 ms; recording +18.699984 s; timestamp 1514606060051 µs</title></circle>
+<circle cx="969.62" cy="451.74" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 23.911 ms; recording +18.699984 s; timestamp 1514606060051 µs</title></circle>
+<circle cx="975.97" cy="353.39" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 85.381 ms; recording +18.833314 s; timestamp 1514606193381 µs</title></circle>
+<circle cx="982.33" cy="313.21" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 110.491 ms; recording +18.966647 s; timestamp 1514606326714 µs</title></circle>
+<circle cx="990.28" cy="335.78" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 96.385 ms; recording +19.133309 s; timestamp 1514606493376 µs</title></circle>
+<circle cx="995.04" cy="331.14" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 99.287 ms; recording +19.233306 s; timestamp 1514606593373 µs</title></circle>
+<circle cx="1004.58" cy="331.02" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 99.362 ms; recording +19.433304 s; timestamp 1514606793371 µs</title></circle>
+<circle cx="1009.35" cy="340.75" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 93.283 ms; recording +19.533324 s; timestamp 1514606893391 µs</title></circle>
+<circle cx="1009.35" cy="441.51" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 30.307 ms; recording +19.533324 s; timestamp 1514606893391 µs</title></circle>
+<circle cx="1017.30" cy="354.41" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 84.747 ms; recording +19.699989 s; timestamp 1514607060056 µs</title></circle>
+<circle cx="1022.06" cy="380.33" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 68.543 ms; recording +19.799985 s; timestamp 1514607160052 µs</title></circle>
+<circle cx="1028.42" cy="356.25" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 83.593 ms; recording +19.933314 s; timestamp 1514607293381 µs</title></circle>
+<circle cx="1034.78" cy="363.16" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 79.274 ms; recording +20.066644 s; timestamp 1514607426711 µs</title></circle>
+<circle cx="1042.72" cy="359.72" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 81.426 ms; recording +20.233310 s; timestamp 1514607593377 µs</title></circle>
+<circle cx="1047.49" cy="358.56" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 82.151 ms; recording +20.333306 s; timestamp 1514607693373 µs</title></circle>
+<circle cx="1053.85" cy="352.29" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 86.071 ms; recording +20.466638 s; timestamp 1514607826705 µs</title></circle>
+<circle cx="1060.21" cy="343.47" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 91.579 ms; recording +20.599990 s; timestamp 1514607960057 µs</title></circle>
+<circle cx="1060.21" cy="443.87" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 28.833 ms; recording +20.599990 s; timestamp 1514607960057 µs</title></circle>
+<circle cx="1066.56" cy="329.30" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 100.440 ms; recording +20.733320 s; timestamp 1514608093387 µs</title></circle>
+<circle cx="1071.33" cy="325.53" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 102.793 ms; recording +20.833317 s; timestamp 1514608193384 µs</title></circle>
+<circle cx="1077.69" cy="264.77" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 140.766 ms; recording +20.966647 s; timestamp 1514608326714 µs</title></circle>
+<circle cx="1084.05" cy="281.37" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 130.394 ms; recording +21.099980 s; timestamp 1514608460047 µs</title></circle>
+<circle cx="1090.40" cy="248.40" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 151.003 ms; recording +21.233310 s; timestamp 1514608593377 µs</title></circle>
+<circle cx="1095.17" cy="293.03" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 123.106 ms; recording +21.333308 s; timestamp 1514608693375 µs</title></circle>
+<circle cx="1101.53" cy="260.76" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 143.273 ms; recording +21.466642 s; timestamp 1514608826709 µs</title></circle>
+<circle cx="1107.89" cy="279.76" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 131.400 ms; recording +21.599970 s; timestamp 1514608960037 µs</title></circle>
+<circle cx="1114.24" cy="301.73" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 117.672 ms; recording +21.733323 s; timestamp 1514609093390 µs</title></circle>
+<circle cx="1119.01" cy="286.26" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 127.338 ms; recording +21.833320 s; timestamp 1514609193387 µs</title></circle>
+<circle cx="1126.96" cy="313.09" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 110.571 ms; recording +21.999983 s; timestamp 1514609360050 µs</title></circle>
+<circle cx="1131.73" cy="310.11" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 112.430 ms; recording +22.099980 s; timestamp 1514609460047 µs</title></circle>
+<circle cx="1138.08" cy="412.90" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 48.188 ms; recording +22.233313 s; timestamp 1514609593380 µs</title></circle>
+<circle cx="1144.44" cy="311.88" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 111.327 ms; recording +22.366645 s; timestamp 1514609726712 µs</title></circle>
+<circle cx="1144.44" cy="430.58" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 37.139 ms; recording +22.366645 s; timestamp 1514609726712 µs</title></circle>
+<circle cx="1150.80" cy="325.49" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 102.819 ms; recording +22.499972 s; timestamp 1514609860039 µs</title></circle>
+<circle cx="1157.16" cy="372.74" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 73.291 ms; recording +22.633304 s; timestamp 1514609993371 µs</title></circle>
+<circle cx="1163.51" cy="356.53" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 83.416 ms; recording +22.766656 s; timestamp 1514610126723 µs</title></circle>
+<circle cx="1169.87" cy="359.36" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 81.649 ms; recording +22.899986 s; timestamp 1514610260053 µs</title></circle>
+<circle cx="1169.87" cy="440.67" r="2.5" fill="#d65b19"><title>Candidate · CL 1000205 · ba82ce8b2df2: 30.832 ms; recording +22.899986 s; timestamp 1514610260053 µs</title></circle>
+<circle cx="875.84441152" cy="149.7351936" r="5" fill="white" stroke="#d65b19" stroke-width="2"/><text x="865.84441152" y="175.7351936" text-anchor="end" font-size="14" fill="#d65b19" font-weight="bold">Max 212.666 ms</text>
+<line x1="98" x2="130" y1="133" y2="133" stroke="#d65b19" stroke-width="3"/><text x="140" y="138" font-size="14">Candidate · CL 1000205 · ba82ce8b2df2</text>
+<text x="674.0" y="538" text-anchor="middle" font-size="15">Elapsed recording time from first paired cycle (s)</text>
+<text transform="translate(23 290.0) rotate(-90)" text-anchor="middle" font-size="15">Node PROCESS latency (ms)</text>
+<text x="78" y="566" font-size="12" fill="#637184">Both replays aborted during teardown; target ranges are closed. Hover over points for exact values.</text>
+</g></svg></div><p><a href="rgf-node-process-timeseries.html">Open plot</a> · <a href="rgf-node-process-timeseries.svg">Download SVG</a>. Both runs are aligned by source timestamp; no node cycles are removed.</p><h2>Aggregate duration per cycle</h2><table><tr><th>Range</th><th>Statistic</th><th>Baseline (ms)</th><th>Optimized (ms)</th><th>Change</th></tr><tr><td>anchor</td><td>mean</td><td>4.954</td><td>4.723</td><td>-4.66%</td></tr><tr><td>anchor</td><td>median</td><td>2.873</td><td>2.762</td><td>-3.86%</td></tr><tr><td>anchor</td><td>p95</td><td>14.556</td><td>13.943</td><td>-4.21%</td></tr><tr><td>anchor</td><td>max</td><td>31.447</td><td>28.891</td><td>-8.13%</td></tr><tr><td>iou</td><td>mean</td><td>9.326</td><td>9.086</td><td>-2.57%</td></tr><tr><td>iou</td><td>median</td><td>5.278</td><td>5.130</td><td>-2.80%</td></tr><tr><td>iou</td><td>p95</td><td>27.566</td><td>27.061</td><td>-1.83%</td></tr><tr><td>iou</td><td>max</td><td>61.551</td><td>58.751</td><td>-4.55%</td></tr><tr><td>node</td><td>mean</td><td>85.491</td><td>85.460</td><td>-0.04%</td></tr><tr><td>node</td><td>median</td><td>79.384</td><td>79.274</td><td>-0.14%</td></tr><tr><td>node</td><td>p95</td><td>152.458</td><td>150.750</td><td>-1.12%</td></tr><tr><td>node</td><td>max</td><td>214.432</td><td>212.666</td><td>-0.82%</td></tr></table><p>IOU includes anchor time. This changes per-call work, not candidate-pair generation. Wall durations include scheduling and instrumentation overhead; one replay per version does not establish run-to-run repeatability. Check capture/import diagnostics for full-report limitations.</p><p><a href="comparison.md">Full analysis</a> · <a href="paired-cycles.csv">Paired cycles</a> · <a href="comparison.json">Statistics JSON</a> · <a href="manifest.json">Provenance</a></p><p>Both replays aborted during teardown. The selected reports have importer errors in other trace data, but retain the closed target ranges through the same replay endpoint. Baseline recovered coverage is 198 cycles; its one earlier cycle is excluded. Re-importing preserved the previously recovered cycle timings exactly. Report-internal NVTX counts alone are not proof of full raw import.</p><p>RAM-resident profiling core dumps were preserved to disk to recover board memory. The later failed lightweight probe and initial CLI startup failure are excluded. The original matched full-system profiles are compared.</p><p><a href="baseline/capture-recovered-12g.nsys-rep">Baseline Nsight report</a> · <a href="optimized/capture-recovered.nsys-rep">Optimized Nsight report</a> · <a href="preserved-cores.json">Archived cores from this session</a> · <a href="preserved-previous-cores.json">Archived prior profiling cores</a></p></html>
